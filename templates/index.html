@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistem Pelacakan Alumni</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/css/modern-theme.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <span class="navbar-brand">Sistem Pelacakan Alumni</span>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="section mb-5">
+        <div class="row align-items-center">
+            <div class="col-md-7">
+                <h2 class="display-5 fw-bold mb-3">Sistem Pelacakan Alumni</h2>
+                <p class="lead mb-4">Prototype sistem pelacakan alumni dari berbagai sumber publik. Modern, elegan, dan mudah digunakan.</p>
+            </div>
+            <!-- Icon di kanan atas dihapus sesuai permintaan -->
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="card p-4 mb-4">
+            <h3 class="mb-4"><i class="bi bi-person-plus icon"></i> Tambah Alumni</h3>
+            <form method="POST" class="mb-4">
+                <input type="hidden" name="tambah_alumni" value="1">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <input type="text" name="nama" class="form-control" placeholder="Nama Alumni" required>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" name="tahun" class="form-control" placeholder="Tahun Lulus" required>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" name="prodi" class="form-control" placeholder="Program Studi" required>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100">Tambah Alumni</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="card p-4 mb-4">
+            <h3 class="mb-4"><i class="bi bi-people icon"></i> Daftar Alumni</h3>
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nama</th>
+                        <th>Tahun</th>
+                        <th>Prodi</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in alumni %}
+                    <tr>
+                        <td>{{a.nama}}</td>
+                        <td>{{a.tahun}}</td>
+                        <td>{{a.prodi}}</td>
+                        <td>
+                            <form method="POST" style="display:inline-block">
+                                <input type="hidden" name="hapus_alumni" value="1">
+                                <input type="hidden" name="alumni_id" value="{{a.id}}">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Hapus alumni ini?')">
+                                    <i class="bi bi-trash"></i> Hapus
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="card p-4 mb-4">
+            <h3 class="mb-4"><i class="bi bi-search icon"></i> Jalankan Pelacakan</h3>
+            <form method="POST" class="mb-4">
+                <input type="hidden" name="jalankan_pelacakan" value="1">
+                <div class="d-flex justify-content-center mb-4">
+                    <button type="submit" class="btn btn-success">Jalankan Pelacakan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="card p-4 mb-4">
+            <h3 class="mb-4"><i class="bi bi-bar-chart icon"></i> Hasil Pelacakan Alumni</h3>
+            <form method="POST" class="mb-3">
+                <input type="hidden" name="reset_hasil" value="1">
+                <button type="submit" class="btn btn-warning">
+                    <i class="bi bi-arrow-counterclockwise"></i> Reset Hasil Pelacakan
+                </button>
+            </form>
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nama</th>
+                        <th>Pekerjaan</th>
+                        <th>Instansi</th>
+                        <th>Confidence</th>
+                        <th>Status</th>
+                        <th>Sumber</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for h in hasil %}
+                    <tr>
+                        <td>{{h.nama}}</td>
+                        <td>{{h.pekerjaan}}</td>
+                        <td>{{h.instansi}}</td>
+                        <td>{{h.confidence}}</td>
+                        <td>{{h.status}}</td>
+                        <td>{{h.sumber}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

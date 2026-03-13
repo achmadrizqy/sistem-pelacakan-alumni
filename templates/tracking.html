@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pelacakan Alumni</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container mt-5">
+	<div class="card shadow p-4 mb-4">
+		<h2 class="mb-4 text-center">Pelacakan Alumni</h2>
+		<p class="mb-4">Sistem akan melakukan pencarian alumni dari berbagai sumber publik.</p>
+
+		<!-- Form tambah alumni -->
+		<form method="POST" class="mb-4">
+			<input type="hidden" name="tambah_alumni" value="1">
+			<div class="row mb-3">
+				<div class="col-md-4">
+					<input type="text" name="nama" class="form-control" placeholder="Nama Alumni" required>
+				</div>
+				<div class="col-md-3">
+					<input type="text" name="tahun" class="form-control" placeholder="Tahun Lulus" required>
+				</div>
+				<div class="col-md-3">
+					<input type="text" name="prodi" class="form-control" placeholder="Program Studi" required>
+				</div>
+				<div class="col-md-2">
+					<button type="submit" class="btn btn-primary w-100">Tambah Alumni</button>
+				</div>
+			</div>
+		</form>
+
+		<!-- Daftar alumni -->
+		<h3 class="mb-3">Daftar Alumni</h3>
+		<table class="table table-striped table-bordered">
+			<thead class="table-dark">
+				<tr>
+					<th>Nama</th>
+					<th>Tahun</th>
+					<th>Prodi</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for a in alumni %}
+				<tr>
+					<td>{{a.nama}}</td>
+					<td>{{a.tahun}}</td>
+					<td>{{a.prodi}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<!-- Tombol jalankan pelacakan -->
+		<form method="POST" class="mb-4">
+			<input type="hidden" name="jalankan_pelacakan" value="1">
+			<div class="d-flex justify-content-center mb-4">
+				<button type="submit" class="btn btn-success">Jalankan Pelacakan</button>
+			</div>
+		</form>
+
+		<!-- Hasil pelacakan -->
+		<hr>
+		<h3 class="mb-3">Hasil Pelacakan Alumni</h3>
+		<table class="table table-striped table-bordered">
+			<thead class="table-dark">
+				<tr>
+					<th>Nama</th>
+					<th>Pekerjaan</th>
+					<th>Instansi</th>
+					<th>Confidence</th>
+					<th>Status</th>
+					<th>Sumber</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for h in hasil %}
+				<tr>
+					<td>{{h.nama}}</td>
+					<td>{{h.pekerjaan}}</td>
+					<td>{{h.instansi}}</td>
+					<td>{{h.confidence}}</td>
+					<td>{{h.status}}</td>
+					<td>{{h.sumber}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<div class="d-flex justify-content-end mt-3">
+			<a href="/" class="btn btn-secondary">Kembali ke Dashboard</a>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
