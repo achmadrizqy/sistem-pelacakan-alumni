@@ -61,6 +61,9 @@ def init_db():
     conn.commit()
     conn.close()
 
+# Pastikan database dibuat sebelum request pertama (Gunicorn tidak menjalankan __main__)
+init_db()
+
 # ===============================
 # DATA SEMENTARA (SIMULASI DATABASE)
 # ===============================
@@ -193,7 +196,7 @@ def index():
 # ===============================
 
 if __name__ == "__main__":
-    init_db()
+    # init_db sudah dipanggil saat module di-import
     # Render passes the port in the PORT environment variable.
     import os
     port = int(os.environ.get("PORT", 5000))
