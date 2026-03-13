@@ -10,6 +10,20 @@ Sistem ini digunakan untuk membantu admin kampus melakukan pelacakan alumni mela
 - Bootstrap
 - SQLite Database
 
+## Metode / Tools yang Dibutuhkan
+
+Minimal untuk menjalankan aplikasi:
+
+1️⃣ Visual Studio Code (atau editor lain)
+2️⃣ Python (3.10+ disarankan)
+3️⃣ Flask
+4️⃣ Google Chrome (atau browser modern lain)
+
+Untuk publish/hosting:
+
+5️⃣ Render (gratis untuk proyek kecil)
+6️⃣ GitHub (repository kode)
+
 ## Fitur Sistem
 
 - Mengelola data alumni
