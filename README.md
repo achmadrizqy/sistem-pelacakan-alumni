@@ -43,3 +43,22 @@ Berikut adalah hasil pengujian aplikasi berdasarkan aspek kualitas yang telah di
 | | Dependensi terdokumentasi di requirements.txt | ✅ Berhasil | Pass |
 
 **Catatan:** Pengujian dilakukan secara manual dengan data dummy. Aplikasi berjalan di environment lokal dengan Python Flask.
+
+## Deploy ke Render
+
+Untuk deploy aplikasi ini ke Render:
+
+1. Buat akun dan login di https://render.com.
+2. Buat **New Web Service** dan pilih repository GitHub: `achmadrizqy/sistem-pelacakan-alumni`.
+3. Pilih branch `main`.
+4. Atur **Build Command** menjadi:
+   ```bash
+   pip install -r requirements.txt
+   ```
+5. Atur **Start Command** menjadi:
+   ```bash
+   gunicorn app:app
+   ```
+6. Klik **Create Web Service**.
+
+Render akan otomatis membangun (build) dan menjalankan aplikasi. Jika ingin deploy ulang setelah perubahan, tinggal push ke branch `main` dan Render akan auto-deploy.
